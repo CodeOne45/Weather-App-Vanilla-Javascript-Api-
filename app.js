@@ -34,7 +34,7 @@ window.addEventListener("load", () => {
           temeratureDescription.textContent = data["weather"][0]["description"];
 
           locationTimeZone.textContent =
-            data["sys"]["country"] + "/" + data["name"];
+            data["sys"]["country"] + " - " + data["name"];
 
           //Icon
           locationIcon.src = iconurl;

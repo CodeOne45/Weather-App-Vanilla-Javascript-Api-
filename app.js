@@ -10,6 +10,7 @@ window.addEventListener("load", () => {
   let tempreatureSection = document.querySelector(".degree-section");
   const tempreatureSpan = document.querySelector(".degree-section span");
 
+  //Si localisation activé
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       long = position.coords.longitude;
@@ -31,6 +32,8 @@ window.addEventListener("load", () => {
             (data["main"]["temp"] * 9) / 5 - 459.67
           );
 
+          tempreatureSpan.textContent = "F";
+
           temeratureDescription.textContent = data["weather"][0]["description"];
 
           locationTimeZone.textContent =
@@ -48,12 +51,14 @@ window.addEventListener("load", () => {
               temeratureDegree.textContent = Math.floor(celsius);
             } else {
               tempreatureSpan.textContent = "F";
-              temeratureDegree.textContent = Math.floor(
-                (data["main"]["temp"] * 9) / 5 - 459.67
-              );
+              temeratureDegree.textContent =
+                Math.floor((data["main"]["temp"] * 9) / 5 - 459.67) + "°";
             }
           });
         });
     });
+  } else {
+    locationTimeZone.innerHTML =
+      "Geolocation is not supported by this browser.";
   }
 });

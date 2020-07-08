@@ -10,6 +10,10 @@ window.addEventListener("load", () => {
   let tempreatureSection = document.querySelector(".degree-section");
   const tempreatureSpan = document.querySelector(".degree-section span");
 
+  let now = new Date();
+  let date = document.querySelector(".date");
+  date.innerText = dateBuilder(now);
+
   //Si localisation activé
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -62,7 +66,37 @@ window.addEventListener("load", () => {
       "Geolocation is not supported by this browser.";
   }
 
-  function onRequestSuccess(success) {
-    console.log("Successfully requested accuracy: " + success.message);
+  function dateBuilder(d) {
+    let months = [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Decembere",
+    ];
+    let days = [
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi",
+      "Samedi",
+      "Dimanche",
+    ];
+
+    let day = days[d.getDay()];
+    let date = d.getDate();
+    let month = months[d.getMonth()];
+    let year = d.getFullYear();
+    //console.log(d.getDay());
+
+    return `${day} ${date} ${month} ${year}`;
   }
 });
